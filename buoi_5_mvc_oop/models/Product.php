@@ -1,0 +1,34 @@
+<?php
+require_once "models/db.php";
+
+// hàm truy vấn để lấy danh sách sản phẩm
+
+class Products extends db{
+    function getProduct(){
+        $sql = "SELECT * FROM products";
+        return  $this->getData($sql);
+    }
+    
+    function loadProductUpdate($id){
+        $sql = "SELECT * FROM products where `id` = '$id'";
+        return $this->getData($sql,false);
+    }
+    
+    function addProducts($ten,$gia){
+        $sql = "INSERT INTO `products`(`ten_sp`, `gia`) VALUES('$ten','$gia')";
+        return $this->getData($sql,false);
+    }
+    
+    function updateProduct($id,$ten,$gia){
+        $sql = "UPDATE `products` SET `ten_sp`='$ten',`gia`='$gia' WHERE id = '$id'";
+        return $this->getData($sql,false);
+    }
+    
+    function deleteProduct($id) {
+        $sql = "DELETE FROM `products` WHERE `id` = '$id'";
+        return $this->getData($sql,false);
+    }
+}
+
+
+
