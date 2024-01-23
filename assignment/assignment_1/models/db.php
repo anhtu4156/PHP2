@@ -1,31 +1,32 @@
 <?php
-require_once "env.php";
+require_once "ENV.php";
 // tạo kết nối từ project php sang mysql
-class db{
-    function getConnect(){
-    $connect = new PDO("mysql:host=" . DBHOST
-        . ";dbname=" . DBNAME
-        . ";charset=" . DBCHARSET,
-        DBUSER,
-        DBPASS
-    );
-    return $connect;
-}
-
-
-
-// nếu như dùng để lấy danh sách thì sẽ truyền true còn truyền false thì
-//sẽ chạy được các câi truy vấn như thêm sửa xóa
-function getData($query, $getAll = true){
-    $conn = $this->getConnect();
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-    if ($getAll) {
-        return $stmt->fetchAll();
+class db
+{
+    function getConnect()
+    {
+        $connect = new PDO(
+            "mysql:host=" . DBHOST
+                . ";dbname=" . DBNAME
+                . ";charset=" . DBCHARSET,
+            DBUSER,
+            DBPASS
+        );
+        return $connect;
     }
-    return $stmt->fetch();
-}
-}
 
 
-?>
+
+    // nếu như dùng để lấy danh sách thì sẽ truyền true còn truyền false thì
+    //sẽ chạy được các câi truy vấn như thêm sửa xóa
+    function getData($query, $getAll = true)
+    {
+        $conn = $this->getConnect();
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        if ($getAll) {
+            return $stmt->fetchAll();
+        }
+        return $stmt->fetch();
+    }
+}

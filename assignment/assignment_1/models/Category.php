@@ -1,5 +1,5 @@
 <?php
-require_once "db.php";
+require_once "DB.php";
 class Category extends db
 {
     function getAllCategory()

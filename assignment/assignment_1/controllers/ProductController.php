@@ -6,22 +6,24 @@ class ProductController
 {
     function listProduct()
     {
-        // $check = isset($_GET['check']) ? isset($_GET['check']) : null;
-        // if($check == 'true'){
-        //     echo '<script>alert("Cập nhật sản phẩm thành công")</script>';
-        // }else if($check == 'false') {
-        //     echo '<script>alert("Cập nhật sản phẩm that bai")</script>';
-        // }
-
         $product = new Product();
         $listProduct = $product->getAllProduct();
-        include "views/product/list.php";
+        include "views/product/List.php";
+    }
+    function listProductUsers()
+    {
+        $product = new Product();
+        $listProduct = $product->getAllProduct();
+        include "views/view_user/Product.php";
     }
     function addProduct()
     {
+        if (isset($_POST['Save'])) {
+            $this->addProducts($_POST['name'], $_POST['price'], $_FILES['image'], $_POST['id_category']);
+        }
         $category = new Category();
         $listCategory = $category->getAllCategory();
-        include "views/product/add.php";
+        include "views/product/Add.php";
     }
     function addProducts($name, $price, $image, $id_category)
     {
@@ -105,12 +107,15 @@ class ProductController
 
     function updateView()
     {
+        if (isset($_POST['update'])) {
+            $this->postUpdateProduct($_POST['name'], $_POST['price'], $_FILES['image'], $_POST['id_category']);
+        }
         $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : null;
         $category = new Category();
         $product = new Product();
         $listCategory = $category->getAllCategory();
         $product = $product->getProduct($product_id);
-        include "views/product/update.php";
+        include "views/product/Update.php";
     }
 
     function postUpdateProduct($name, $price, $image, $id_category)
@@ -138,10 +143,10 @@ class ProductController
 
         if (!$check) {
             echo '<script>alert("Cap nhat sản phẩm thành công")</script>';
-            echo '<script>window.location.href = "index.php";</script>';
+            echo '<script>window.location.href = "Index.php";</script>';
         } else {
             echo '<script>alert("Cap nhat sản phẩm that bai")</script>';
-            echo '<script>window.location.href = "index.php";</script>';
+            echo '<script>window.location.href = "Index.php";</script>';
         }
     }
 
@@ -152,6 +157,6 @@ class ProductController
         $product = new Product();
         $product->deleteProduct($product_id);
         echo '<script>alert("Xoa sản phẩm thành công")</script>';
-        echo '<script>window.location.href = "index.php";</script>';
+        echo '<script>window.location.href = "Index.php";</script>';
     }
 }

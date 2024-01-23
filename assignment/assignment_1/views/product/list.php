@@ -13,7 +13,7 @@
     <h2 class="mb-4">Danh sách Sản Phẩm</h2>
 
     <!-- Nút Thêm -->
-    <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a>
+    <a href="Index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a>
 
     <!-- Bảng Bootstrap -->
     <table class="table">
